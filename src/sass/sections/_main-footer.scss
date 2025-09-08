@@ -1,0 +1,120 @@
+.main-footer {
+    background-color: $brown;
+    padding: 64px 0;
+
+    @media screen and (min-width: 1024px) {
+        padding: 42px 0;
+    }
+
+    .wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+
+        @media screen and (min-width: 1024px) {
+            display: grid;
+            flex-direction: row;
+            flex-wrap: wrap;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: flex-start;
+            gap: 20px;
+        }
+    }
+
+    &__logo-area {
+        max-width: 240px;
+
+        @media screen and (min-width: 1024px) {
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__text {
+        color: $soft-gold;
+        text-align: center;
+
+        @media screen and (min-width: 1024px) {
+            text-align: left;
+            grid-column: 1 / 3;
+            max-width: 294px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    &__menu {
+        text-align: center;
+
+        @media screen and (min-width: 1024px) {
+            text-align: left;
+        }
+
+        &-title {
+            color: darken($soft-gold, 15%);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        &-item {
+            font-size: 16px;
+
+            a {
+                color: $soft-gold;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @media screen and (min-width: 1024px) {
+            text-align: left;
+        }
+
+        &-title {
+            text-align: center;
+            color: darken($soft-gold, 15%);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+
+            @media screen and (min-width: 1024px) {
+                text-align: left;
+            }
+        }
+    }
+}
+
+.copyright {
+    padding: 12px 0;
+    background-color: $gold;
+
+    p {
+        color: $soft-gold;
+        font-size: 12px;
+    }
+
+    a {
+        color: $soft-gold;
+        font-weight: 500;
+    }
+
+    .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+
+        @media screen and (min-width: 1024px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}

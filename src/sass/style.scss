@@ -1,0 +1,29 @@
+@import "base/reset";
+
+@import "plugins/swiper";
+@import "plugins/nice-select2";
+
+@import "variables/base";
+@import "variables/fonts";
+@import "variables/colors";
+@import "variables/mask-data";
+
+@import "base/base";
+@import "base/animations";
+
+@import "sections/main-header";
+@import "sections/main-footer";
+@import "sections/main-banner";
+@import "sections/internal-banner";
+@import "sections/about";
+@import "sections/procedures";
+@import "sections/image-text";
+@import "sections/testimonials";
+@import "sections/blog-list";
+@import "sections/contacts";
+@import "sections/video-area";
+@import "sections/faq";
+@import "sections/call-text";
+@import "sections/blog-categories";
+@import "sections/contact-form";
+@import "sections/the-content";

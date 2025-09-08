@@ -1,0 +1,163 @@
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  &.no-scroll {
+    overflow-y: hidden;
+  }
+}
+
+body {
+  font-family: $font-family-primary;
+  overflow: hidden;
+
+  &.no-scroll {
+    overflow-y: hidden;
+  }
+}
+
+input,
+textarea,
+select {
+  font-family: $font-family-primary;
+}
+
+input {
+  &[type='submit'] {
+    cursor: pointer;
+  }
+
+  &[type='button'] {
+    cursor: pointer;
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @media screen and (min-width: #{$container + 48px}) {
+    padding: 0;
+  }
+}
+
+.shadow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background-color: rgba(0, 0, 0, .4);
+  pointer-events: none;
+  opacity: 0;
+  transition: .4s;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.hide-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wpcf7-response-output {
+  padding: 1rem !important;
+  color: $white;
+  line-height: 1.3;
+  border-color: transparent !important;
+  text-align: center;
+}
+
+form {
+  &.sent .wpcf7-response-output {
+    border-color: #2ecc71 !important;
+    background: #2ecc71 !important;
+  }
+
+  &.failed .wpcf7-response-output,
+  &.aborted .wpcf7-response-output {
+    border-color: #e74c3c !important;
+    background: #e74c3c !important;
+  }
+
+  &.invalid .wpcf7-response-output,
+  &.unaccepted .wpcf7-response-output,
+  &.payment-required .wpcf7-response-output {
+    border-color: #f1c40f !important;
+    background: #f1c40f !important;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 16px 40px;
+  font-weight: 700;
+  color: $soft-gold;
+
+  &--default {
+    border: 2px solid $soft-gold;
+    text-align: center;
+    transition: .4s;
+    text-transform: lowercase;
+
+    &:hover {
+      background-color: rgba($soft-gold, .2);
+    }
+  }
+
+  &--gold {
+    border: 2px solid $gold;
+    background: $gold;
+    text-align: center;
+    transition: .4s;
+    text-transform: lowercase;
+    color: $white;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: rgba($soft-gold, .2);
+    }
+  }
+}
+
+.title {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 48px;
+  }
+}
+
+p {
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+li {
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+img {
+  max-width: 100%;
+}
