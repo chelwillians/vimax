@@ -5,6 +5,7 @@
     transition: .4s;
     width: 100%;
     border-bottom: 1px solid $light-gray;
+    background: linear-gradient(170.65deg, #0F0F0F -105.98%, rgba(22, 22, 22, 0.5) 246.1%);
 
     &--float {
         position: absolute;
@@ -136,7 +137,7 @@
 
             @media screen and (min-width: 1024px) {
                 flex-direction: row;
-                gap: 24px;
+                gap: 64px;
                 height: 100%;
             }
 
@@ -517,7 +518,7 @@
         background-color: $orange;
         border: 0;
         padding: 0px;
-        padding-left: 7px;
+        padding-left: 32px;
         line-height: 100%;
         color: $white;
         text-transform: uppercase;
@@ -543,7 +544,7 @@
         img {
             border-left: 1px solid $white;
             padding-left: 10px;
-            margin-left: 10px;
+            margin-left: 32px;
             padding: 8px;
         }
     }

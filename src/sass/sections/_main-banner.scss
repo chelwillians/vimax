@@ -7,6 +7,12 @@
         flex-direction: column;
         gap: 18px;
         z-index: 50;
+        justify-content: space-between;
+
+        @media screen and (min-width: 1024px) {
+            height: 100%;
+            padding: 132px 0 52px;
+        }
     }
 
     .swiper-wrapper {
@@ -168,45 +174,69 @@
 
     &__navigation {
         position: absolute;
-        left: 0;
-        bottom: 0;
+        left: 0%;
+        bottom: 32px;
         z-index: 600;
-        transform: translateX(25%);
+        width: 100%;
+        max-width: $container;
 
         @media screen and (min-width: 1024px) {
-            left: 0;
-            transform: unset;
+            bottom: unset;
+            top: calc(50% + 36px);
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
     &__prev {
         position: absolute;
-        bottom: 3px;
-        left: 5px;
+        bottom: 0;
+        left: 24px;
 
-        width: 10px;
-        height: 10px;
+        width: 42px;
+        height: 32px;
 
-        border-left: 2px solid #FF8400;
-        border-top: 2px solid #FF8400;
-        transform: rotate(-45deg);
+        -webkit-mask: $arrow-banner no-repeat;
+        mask: $arrow-banner no-repeat;
+        background: $white;
+        mask-size: 100%;
 
         cursor: pointer;
+        transition: .4s;
+
+        &:hover {
+            background-color: $orange;
+        }
+
+        @media screen and (min-width: 1024px) {
+            left: 0;
+        }
     }
 
     &__next {
         position: absolute;
-        bottom: 3px;
-        right: 5px;
+        bottom: 0;
+        right: 24px;
 
-        width: 10px;
-        height: 10px;
+        -webkit-mask: $arrow-banner no-repeat;
+        mask: $arrow-banner no-repeat;
+        background: $white;
 
-        border-left: 2px solid #FF8400;
-        border-top: 2px solid #FF8400;
-        transform: rotate(135deg);
+        width: 42px;
+        height: 32px;
+
+        transform: rotate(180deg);
 
         cursor: pointer;
+        transition: .4s;
+
+        &:hover {
+            background-color: $orange;
+        }
+
+        @media screen and (min-width: 1024px) {
+            right: 0;
+        }
     }
 
     &__pagination {
