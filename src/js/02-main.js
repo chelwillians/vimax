@@ -80,3 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const telasItems = document.querySelectorAll('.telas__item');
+
+    telasItems?.forEach(el => {
+        el.addEventListener('click', () => {
+            const toOpen = el.dataset.imageShow
+            if(el.classList.contains('active')){
+                el.classList.remove('active')
+            } else {
+                document.querySelector('.telas__item.active')?.classList.remove('active')
+                el.classList.toggle('active')
+
+                document.querySelector(`.telas__image.active`).classList.remove('active')
+                document.querySelector(`.telas__image[data-image-show="${toOpen}"]`).classList.add('active')
+            }
+        })
+    })
+});

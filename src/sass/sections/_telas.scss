@@ -1,0 +1,202 @@
+.telas {
+    padding: 48px 0;
+    background: $beige;
+
+    @media screen and (min-width: 1024px) {
+        padding: 64px 0;
+    }
+
+    &__header {
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        line-height: 1.2;
+
+        @media screen and (min-width: 1024px) {
+            max-width: 48%;
+            font-size: 56px;
+        }
+    }
+
+    &__desc {
+        margin-top: 12px;
+
+        @media screen and (min-width: 1024px) {
+            max-width: 24%;
+            text-align: right;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    }
+
+    &__content {
+        margin-top: 24px;
+
+        @media screen and (min-width: 1024px) {
+            margin-top: 90px;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__image-area {
+        position: relative;
+
+        @media screen and (min-width: 1024px) {
+            width: 100%;
+            max-width: 588px;
+        }
+    }
+
+    &__image {
+        border-radius: 12px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        transition: .4s;
+
+        &.active {
+            opacity: 1;
+            position: relative;
+        }
+    }
+
+    &__datas {
+        margin-top: 24px;
+
+        @media screen and (min-width: 1024px) {
+            width: 100%;
+            max-width: 486px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0F0F0F;
+        text-transform: uppercase;
+        line-height: 1.2;
+        margin-bottom: 8px;
+    }
+
+    &__item {
+        $item: &;
+        border-top: 3px solid #0F0F0F;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 12px;
+
+        @media screen and (min-width: 1024px) {
+            margin-top: 28px;
+        }
+
+        &:last-child {
+            border-bottom: 3px solid #0F0F0F;
+            padding-bottom: 12px;
+
+            @media screen and (min-width: 1024px) {
+                padding-bottom: 28px;
+            }
+        }
+
+        &-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+            gap: 12px;
+            cursor: pointer;
+
+            @media screen and (min-width: 1024px) {
+                margin-top: 28px;
+            }
+        }
+
+        &-icon {
+            width: 40px;
+        }
+
+        &-title {
+            width: calc(100% - 80px);
+            font-size: 24px;
+            font-weight: 700;
+            color: #0F0F0F;
+            text-transform: uppercase;
+
+            @media screen and (min-width: 1024px) {
+                font-size: 36px;
+            }
+        }
+
+        &-icon-controll {
+            position: relative;
+            width: 40px;
+            height: 40px;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: block;
+                width: 40px;
+                height: 40px;
+
+                background-image: $icon-controll;
+                background-size: 100%;
+
+                #{$item}.active & {
+                    opacity: 0;
+                }
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: block;
+                width: 40px;
+                height: 40px;
+
+                background-image: $icon-controll-close;
+                background-size: 100%;
+                opacity: 0;
+
+                #{$item}.active & {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &-content {
+            width: 100%;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: .4s;
+
+            p {
+                @media screen and (min-width: 1024px) {
+                    font-size: 24px;
+                }
+            }
+
+            #{$item}.active & {
+                max-height: 1610px;
+                opacity: 1;
+                padding-top: 16px;
+            }
+        }
+    }
+}
