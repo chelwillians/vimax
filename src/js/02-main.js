@@ -99,3 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    const swiper = new Swiper(".products__list", {
+        rewind: true,
+        spaceBetween: 16,
+        slidesPerView: "auto",
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+        },
+    });
+});
