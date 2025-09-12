@@ -9,18 +9,17 @@
     .wrap {
         display: flex;
         flex-direction: column;
-        gap: 18px;
+        gap: 32px;
 
         @media screen and (min-width: 1024px) {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
             align-items: flex-start;
+            flex-direction: row;
         }
     }
 
     &__image-area {
         @media screen and (min-width: 1024px) {
-            grid-column: 1 / 2;
+            width: 50%;
         }
     }
 
@@ -32,7 +31,7 @@
 
         @media screen and (min-width: 1024px) {
             gap: 36px;
-            grid-column: 3 / 3;
+            width: 50%;
         }
     }
 
