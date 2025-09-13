@@ -1,0 +1,96 @@
+.commitments {
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 48px 0;
+
+    @media screen and (min-width: 1024px) {
+        padding: 64px 0;
+    }
+
+    &__title {
+        color: $white;
+        text-transform: uppercase;
+        line-height: 1.2;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 60px;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 48px;
+        gap: 24px;
+
+        @media screen and (min-width: 1024px) {
+            margin-top: 68px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+    }
+
+    &__item {
+        position: relative;
+        color: $white;
+        border: 3px solid $orange;
+        border-radius: 6px;
+
+        &::after{
+            content: '';
+            width: 24px;
+            height: 3px;
+            background-color: $orange;
+            position: absolute;
+            left: -2px;
+            top: 0;
+            transform-origin: 100% 0;
+            transform: translateX(-100%) rotate(-45deg);
+        }
+
+        &::before{
+            content: '';
+            width: 24px;
+            height: 3px;
+            background-color: $orange;
+            position: absolute;
+            left: -2px;
+            bottom: 0;
+            transform-origin: 100% 0;
+            transform: translateX(-100%) rotate(-45deg);
+        }
+
+        &-title {
+            font-size: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 14px;
+
+            @media screen and (min-width: 1024px) {
+                padding: 20px;
+            }
+        }
+
+        &-desc {
+            border-top: 3px solid $orange;
+            padding: 14px;
+
+            &::after{
+            content: '';
+            width: 24px;
+            height: 3px;
+            background-color: $orange;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            transform-origin: 100% 0;
+            transform: rotate(-45deg);
+        }
+
+            @media screen and (min-width: 1024px) {
+                padding: 20px;
+            }
+        }
+    }
+}
