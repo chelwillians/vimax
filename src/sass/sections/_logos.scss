@@ -1,0 +1,62 @@
+.logos {
+    $s: &;
+    padding: 48px 0;
+
+    @media screen and (min-width: 1024px) {
+        padding: 78px 0;
+    }
+
+    &__header {
+        &--reverse {
+            text-align: right;
+        }
+    }
+
+    &__pretitle {
+        color: $orange;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        display: inline-block;
+        position: relative;
+        font-size: 48px;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        @media screen and (min-width: 1024px) {
+            font-size: 60px;
+        }
+
+        &::after {
+            @media screen and (min-width: 1024px) {
+                content: "";
+                position: absolute;
+                left: calc(100% - 5px);
+                bottom: 24px;
+                width: 100vw;
+                height: 1px;
+                background-color: #0f0f0f;
+
+                #{$s}__header--reverse & {
+                    left: 4px;
+                    transform: translateX(-100%);
+                }
+            }
+        }
+    }
+
+    &__list {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+
+        @media screen and (min-width: 1024px) {
+            margin-top: 58px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
