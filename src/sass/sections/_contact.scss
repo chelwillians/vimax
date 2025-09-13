@@ -1,0 +1,111 @@
+.contact {
+    padding: 48px 0;
+    background-color: #D9D9D9;
+
+    .wrap {
+        @media screen and (min-width: 1024px) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+    }
+
+    &__left {
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+
+    &__desc {
+        position: relative;
+        margin-top: 18px;
+
+        p {
+            font-size: 22px;
+        }
+
+        &-arrow {
+            display: none;
+
+            @media screen and (min-width: 1024px) {
+                display: inline;
+            }
+        }
+    }
+
+    &__form {
+        margin-top: 24px;
+
+        @media screen and (min-width: 1024px) {
+            margin-top: 0;
+        }
+
+        form {}
+
+        input {
+            padding: 7px 14px;
+            background-color: #E6E6E6;
+            border: 1px solid $black;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 18px;
+
+            &:first-child {
+                border-radius: 6px 6px 0 0;
+            }
+
+            &[type="submit"] {
+                background-color: $orange;
+                color: $black;
+                font-weight: 700;
+                text-transform: uppercase;
+                border-radius: 0 0 6px 6px;
+
+                @media screen and (min-width: 1024px) {
+                    font-size: 30px;
+                    padding: 28px;
+                }
+            }
+
+            &::placeholder {
+                text-transform: uppercase;
+            }
+        }
+
+        textarea {
+            padding: 7px 14px;
+            background-color: #E6E6E6;
+            border: 1px solid $black;
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+            min-width: 100%;
+            min-height: 180px;
+            font-size: 18px;
+            margin: 0;
+
+            &::placeholder {
+                text-transform: uppercase;
+            }
+        }
+
+        .accept {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 12px;
+            font-size: 18px;
+
+            input {
+                width: auto;
+            }
+        }
+    }
+}
