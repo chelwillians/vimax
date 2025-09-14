@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", (event) => {
     const swiper = new Swiper(".products__list", {
         rewind: true,
-        spaceBetween: 16,
+        spaceBetween: 32,
         slidesPerView: "auto",
         autoplay: {
             delay: 3500,
