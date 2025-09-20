@@ -203,8 +203,6 @@ function opt_page_register_theme_options_metabox()
         'id' => 'text_btn_header',
         'type' => 'text',
     ));
-
-    
 }
 add_action('cmb2_admin_init', 'opt_page_register_theme_options_metabox');
 
@@ -312,3 +310,74 @@ function cmb2_main_banner()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_main_banner');
+
+function cmb2_about()
+{
+    $cmb_about = new_cmb2_box(array(
+        'id'            => 'cmb2_about',
+        'title'         => __('Seção - Sobre', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_title',
+        'name' => 'Título ',
+        'type' => 'text',
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_subtitle',
+        'name' => 'Subtítulo ',
+        'type' => 'text',
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_desc',
+        'name' => 'Descrição',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_link',
+        'name' => 'Link botão',
+        'type' => 'text',
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_text_button',
+        'name' => 'Texto botão',
+        'type' => 'text',
+    ));
+
+    $cmb_about->add_field(array(
+        'id'   => 'about_image',
+        'name' => 'Texto botão',
+        'desc'    => 'Resolução recomendada de 1372x1074',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_about');

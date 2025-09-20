@@ -40,22 +40,32 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="about">
-    <div class="container wrap">
-        <div class="about__image-area">
-            <img src="<?= get_template_directory_uri() ?>/dist/images/sobre.jpg" alt="" class="about__image">
-        </div>
-        <div class="about__text">
-            <h2 class="about__title title">TRADIÇÃO <strong>E INOVAÇÃO</strong></h2>
-            <p class="about__subtitle">A Vimax é especializada na fabricação de Telas para Peneiramento para classificação de minérios e agregados. </p>
-            <div class="about__desc">
-                <p>Completa linha de produtos para atender as especificações do seu peneiramento e com uma equipe altamente especializada para desenvolver soluções e garantir as exigencias do processo. </p>
+<?php if (!empty(get_field_cmb2('about_show'))): ?>
+    <section class="about">
+        <div class="container wrap">
+            <div class="about__image-area">
+                <img src="<?= !empty(get_field_cmb2('about_image')) ? get_field_cmb2('about_image') : get_template_directory_uri() . '/dist/images/sobre.jpg' ?>" alt="<?= !empty(get_post_meta(get_field_cmb2('about_image_id'), '_wp_attachment_image_alt', TRUE)) ? get_post_meta(get_field_cmb2('about_image_id'), '_wp_attachment_image_alt', TRUE) : 'Imagem sobre' ?>" class="about__image">
             </div>
+            <div class="about__text">
+                <?php if (!empty(get_field_cmb2('about_title'))): ?>
+                    <h2 class="about__title title"><?= get_field_cmb2('about_title') ?></h2>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('about_subtitle'))): ?>
+                    <p class="about__subtitle"><?= get_field_cmb2('about_subtitle') ?></p>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('about_desc'))): ?>
+                    <div class="about__desc">
+                        <?= wpautop(get_field_cmb2('about_desc')) ?>
+                    </div>
+                <?php endif; ?>
 
-            <a href="#" class="about__button">Conheça nossos produtos <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                <?php if (!empty(get_field_cmb2('about_link'))): ?>
+                    <a href="<?= get_field_cmb2('about_link') ?>" class="about__button"><?= !empty(get_field_cmb2('about_text_button')) ? get_field_cmb2('about_text_button') : "Conheça nossos produtos" ?> <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="telas">
     <div class="container wrap">
