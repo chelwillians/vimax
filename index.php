@@ -6,37 +6,39 @@
 
 get_header() ?>
 
-<section class="main-banner">
-    <h1 class="hide-title">Vimax</h1>
-    <div class="main-banner__list swiper">
-        <div class="swiper-wrapper">
-            <div class="main-banner__item swiper-slide">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/banner.jpg" class="main-banner__item-image main-banner__item-image--desk" alt="">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/banner-mobile.jpg" class="main-banner__item-image main-banner__item-image--mobile" alt="">
-                <div class="container wrap">
-                    <h2 class="main-banner__item-title">Telas em borracha.</h2>
-                    <div class="main-banner__item-desc">
-                        <p>Projetadas para absorver impacto e ampliar a vida útil do equipamento.</p>
+<h1 class="hide-title"><?= !empty(get_field_cmb2('h1_content')) ? get_field_cmb2('h1_content') : get_the_title() ?></h1>
+<?php if (!empty(get_field_cmb2('banner_show')) && !empty(get_field_cmb2('sliders'))): ?>
+    <section class="main-banner">
+        <div class="main-banner__list swiper">
+            <div class="swiper-wrapper">
+                <?php foreach (get_field_cmb2('sliders') as $index => $item): ?>
+                    <div class="main-banner__item swiper-slide">
+                        <?php if (!empty($item['image_desk'])): ?>
+                            <img src="<?= $item['image_desk'] ?>" class="main-banner__item-image main-banner__item-image--desk" alt="<?= !empty(get_post_meta($item['image_desk_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['image_desk_id'], '_wp_attachment_image_alt', TRUE) : 'Imagem do banner' ?>">
+                        <?php endif; ?>
+                        <?php if (!empty($item['image_mobile'])): ?>
+                            <img src="<?= $item['image_mobile'] ?>" class="main-banner__item-image main-banner__item-image--mobile" alt="<?= !empty(get_post_meta($item['image_mobile_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['image_mobile_id'], '_wp_attachment_image_alt', TRUE) : 'Imagem do banner' ?>">
+                        <?php endif; ?>
+                        <div class="container wrap">
+                            <?php if (!empty($item['title'])): ?>
+                                <h2 class="main-banner__item-title"><?= $item['title'] ?></h2>
+                            <?php endif; ?>
+                            <?php if (!empty($item['desc'])): ?>
+                                <div class="main-banner__item-desc">
+                                    <?= wpautop($item['desc']) ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
-            <div class="main-banner__item swiper-slide">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/banner.jpg" class="main-banner__item-image main-banner__item-image--desk" alt="">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/banner-mobile.jpg" class="main-banner__item-image main-banner__item-image--mobile" alt="">
-                <div class="container wrap">
-                    <h2 class="main-banner__item-title">Telas em borracha.</h2>
-                    <div class="main-banner__item-desc">
-                        <p>Projetadas para absorver impacto e ampliar a vida útil do equipamento.</p>
-                    </div>
-                </div>
+            <div class="main-banner__navigation">
+                <div class="main-banner__prev"></div>
+                <div class="main-banner__next"></div>
             </div>
         </div>
-        <div class="main-banner__navigation">
-            <div class="main-banner__prev"></div>
-            <div class="main-banner__next"></div>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="about">
     <div class="container wrap">

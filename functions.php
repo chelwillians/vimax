@@ -207,3 +207,108 @@ function opt_page_register_theme_options_metabox()
     
 }
 add_action('cmb2_admin_init', 'opt_page_register_theme_options_metabox');
+
+// Fields
+function cmb2_h1_title()
+{
+    $cmb_h1_title = new_cmb2_box(array(
+        'id'            => 'cmb2_h1',
+        'title'         => __('H1', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => ['index.php']),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_h1_title->add_field(array(
+        'id'   => 'h1_content',
+        'name' => 'Título H1 ',
+        'type' => 'text',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_h1_title');
+
+function cmb2_main_banner()
+{
+    $cmb_main_banner = new_cmb2_box(array(
+        'id'            => 'cmb2_banner',
+        'title'         => __('Seção - Banner', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_main_banner->add_field(array(
+        'id'   => 'banner_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $banners = $cmb_main_banner->add_field(array(
+        'id'          => 'sliders',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Slider {#}', 'cmb2'),
+            'add_button'        => __('Adicionar slide', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+
+    $cmb_main_banner->add_group_field($banners, array(
+        'id'      => 'image_desk',
+        'name'    => 'Imagem Desktop',
+        'desc'    => 'Resolução recomendada de 1920x724',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $cmb_main_banner->add_group_field($banners, array(
+        'id'      => 'image_mobile',
+        'name'    => 'Imagem Mobile',
+        'desc'    => 'Resolução recomendada de 1080x1080',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $cmb_main_banner->add_group_field($banners, array(
+        'id'      => 'title',
+        'name'    => 'Título',
+        'type'    => 'text',
+    ));
+
+    $cmb_main_banner->add_group_field($banners, array(
+        'id'      => 'desc',
+        'name'    => 'Descrição',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_main_banner');
