@@ -67,65 +67,49 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="telas">
-    <div class="container wrap">
-        <div class="telas__header">
-            <h2 class="telas__title title">A tela certa para o seu peneiramento.</h2>
-            <div class="telas__desc">
-                <p>Pioneira no desenvolvimento de novas matérias primas para garantir a maior eficiência e durabilidade. </p>
+<?php if (!empty(get_field_cmb2('telas_show'))): ?>
+    <section class="telas">
+        <div class="container wrap">
+            <div class="telas__header">
+                <?php if (!empty(get_field_cmb2('telas_title'))): ?>
+                    <h2 class="telas__title title"><?= get_field_cmb2('telas_title') ?></h2>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('telas_desc'))): ?>
+                    <div class="telas__desc">
+                        <?= wpautop(get_field_cmb2('telas_desc')) ?>
+                    </div>
+                <?php endif; ?>
             </div>
-        </div>
 
-        <div class="telas__content">
-            <div class="telas__image-area">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/peneira-1.jpg" data-image-show="1" alt="" class="telas__image active">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/peneira-2.jpg" data-image-show="2" alt="" class="telas__image">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/peneira-2.jpg" data-image-show="3" alt="" class="telas__image">
-            </div>
-            <div class="telas__datas">
-                <h3 class="telas__subtitle">Conheça nossas linhas de produtos</h3>
-                <div class="telas__list">
-                    <div class="telas__item" data-image-show="1">
-                        <div class="telas__item-header">
-                            <div class="telas__item-icon"><img src="<?= get_template_directory_uri() ?>/dist/images/icon-telas-1.svg" alt=""></div>
-                            <h3 class="telas__item-title">Telas em Aço</h3>
-                            <div class="telas__item-icon-controll"></div>
-                        </div>
-                        <div class="telas__item-content">
-                            <p>Área livre</p>
-                            <p>Eficiência</p>
-                            <p>Produtividade</p>
-                        </div>
-                    </div>
-                    <div class="telas__item" data-image-show="2">
-                        <div class="telas__item-header">
-                            <div class="telas__item-icon"><img src="<?= get_template_directory_uri() ?>/dist/images/icon-telas-2.svg" alt=""></div>
-                            <h3 class="telas__item-title">Telas de borracha</h3>
-                            <div class="telas__item-icon-controll"></div>
-                        </div>
-                        <div class="telas__item-content">
-                            <p>Durabilidade</p>
-                            <p>Custo x Benefício</p>
-                            <p>Versatilidade</p>
-                        </div>
-                    </div>
-                    <div class="telas__item" data-image-show="3">
-                        <div class="telas__item-header">
-                            <div class="telas__item-icon"><img src="<?= get_template_directory_uri() ?>/dist/images/icon-telas-3.svg" alt=""></div>
-                            <h3 class="telas__item-title">Telas em PU</h3>
-                            <div class="telas__item-icon-controll"></div>
-                        </div>
-                        <div class="telas__item-content">
-                            <p>Eficiência</p>
-                            <p>Durabilidade</p>
-                            <p>Versatilidade</p>
-                        </div>
+            <div class="telas__content">
+                <div class="telas__image-area">
+                    <?php foreach (get_field_cmb2('telas') as $index => $item): ?>
+                        <img src="<?= $item['image'] ?>" data-image-show="<?= $index ?>" alt="<?= !empty(get_post_meta($item['image_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['image_id'], '_wp_attachment_image_alt', TRUE) : 'Imagem tela' ?>" class="telas__image <?= $index === 0 ? 'active' : '' ?>">
+                    <?php endforeach; ?>
+                </div>
+                <div class="telas__datas">
+                    <?php if (!empty(get_field_cmb2('telas_subtitle'))): ?>
+                        <h3 class="telas__subtitle"><?= get_field_cmb2('telas_subtitle') ?></h3>
+                    <?php endif; ?>
+                    <div class="telas__list">
+                        <?php foreach (get_field_cmb2('telas') as $index => $item): ?>
+                            <div class="telas__item" data-image-show="<?= $index ?>">
+                                <div class="telas__item-header">
+                                    <div class="telas__item-icon"><img src="<?= $item['icon'] ?>" alt="<?= !empty(get_post_meta($item['icon_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['icon_id'], '_wp_attachment_image_alt', TRUE) : 'Ícone tela' ?>"></div>
+                                    <h3 class="telas__item-title"><?= $item['title'] ?></h3>
+                                    <div class="telas__item-icon-controll"></div>
+                                </div>
+                                <div class="telas__item-content">
+                                    <?= wpautop($item['desc']) ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="points">
     <video autoplay loop muted playsinline class="points__video" preload="metadata" poster="<?= get_template_directory_uri() ?>/dist/images/thumb-video.png" aria-label="Vídeo demonstrativo de produtos que vibram com o sucesso do seu peneiramento">

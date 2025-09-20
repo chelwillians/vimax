@@ -381,3 +381,110 @@ function cmb2_about()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_about');
+
+
+function cmb2_telas()
+{
+    $cmb_telas = new_cmb2_box(array(
+        'id'            => 'cmb2_telas',
+        'title'         => __('Seção - Telas', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_telas->add_field(array(
+        'id'   => 'telas_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_telas->add_field(array(
+        'id'   => 'telas_title',
+        'name' => 'Título ',
+        'type' => 'text',
+    ));
+
+    $cmb_telas->add_field(array(
+        'id'   => 'telas_desc',
+        'name' => 'Descrição',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+
+    $cmb_telas->add_field(array(
+        'id'   => 'telas_subtitle',
+        'name' => 'Subtítulo ',
+        'type' => 'text',
+    ));
+
+    $telas = $cmb_telas->add_field(array(
+        'id'          => 'telas',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Tela {#}', 'cmb2'),
+            'add_button'        => __('Adicionar tela', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+
+    $cmb_telas->add_group_field($telas, array(
+        'id'      => 'title',
+        'name'    => 'Título',
+        'type'    => 'text',
+    ));
+
+    $cmb_telas->add_group_field($telas, array(
+        'id'      => 'desc',
+        'name'    => 'Descrição',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+
+    $cmb_telas->add_group_field($telas, array(
+        'id'      => 'icon',
+        'name'    => 'Ícone',
+        'desc'    => 'Resolução recomendada de 42x42',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $cmb_telas->add_group_field($telas, array(
+        'id'      => 'image',
+        'name'    => 'Imagem Desktop',
+        'desc'    => 'Resolução recomendada de 588x485',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_telas');
