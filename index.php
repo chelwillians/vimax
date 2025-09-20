@@ -111,43 +111,35 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="points">
-    <video autoplay loop muted playsinline class="points__video" preload="metadata" poster="<?= get_template_directory_uri() ?>/dist/images/thumb-video.png" aria-label="Vídeo demonstrativo de produtos que vibram com o sucesso do seu peneiramento">
-        <!-- <source src="video-produtos-peneiramento.mp4" type="video/mp4" /> -->
-        <source src="<?= get_template_directory_uri() ?>/dist/videos/video_fundo.webm" type="video/webm" />
-        Seu navegador não suporta a tag de vídeo. <a href="video-produtos-peneiramento.mp4">Clique aqui para baixar o vídeo.</a>
-    </video>
-    <div class="container wrap">
-        <h2 class="points__title title">Produtos que <strong>vibram com o sucesso</strong> do seu peneiramento. </h2>
+<?php if (!empty(get_field_cmb2('points_show'))): ?>
+    <section class="points">
+        <?php if (!empty(get_field_cmb2('points_video'))): ?>
+            <video autoplay loop muted playsinline class="points__video" preload="metadata" poster="<?= !empty(get_field_cmb2('points_video_poster')) ? get_field_cmb2('points_video_poster') : '' ?>" aria-label="Vídeo">
+                <!-- <source src="video-produtos-peneiramento.mp4" type="video/mp4" /> -->
+                <source src="<?= get_field_cmb2('points_video') ?>" type="video/webm" />
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        <?php endif; ?>
+        <div class="container wrap">
+            <?php if (!empty(get_field_cmb2('points_title'))): ?>
+                <h2 class="points__title title"><?= get_field_cmb2('points_title') ?></h2>
+            <?php endif; ?>
 
-        <div class="points__list">
-            <div class="points__item">
-                <div class="points__item-icon">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/icon-capacete.svg" alt="">
-                </div>
-                <div class="points__item-desc">
-                    <p>Departamento de de engenharia e assistência técnica.</p>
-                </div>
-            </div>
-            <div class="points__item">
-                <div class="points__item-icon">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/icon-bola.svg" alt="">
-                </div>
-                <div class="points__item-desc">
-                    <p>Membro da Wear Media Alliance.</p>
-                </div>
-            </div>
-            <div class="points__item">
-                <div class="points__item-icon">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/icon-calendario.svg" alt="">
-                </div>
-                <div class="points__item-desc">
-                    <p><strong>Comprometimento</strong> com a qualidade e atendimento.</p>
-                </div>
+            <div class="points__list">
+                <?php foreach (get_field_cmb2('points') as $index => $item): ?>
+                    <div class="points__item">
+                        <div class="points__item-icon">
+                            <img src="<?= !empty($item['icon']) ? $item['icon'] : get_template_directory_uri() . '/dist/images/icon-capacete.svg' ?>" alt="<?= !empty(get_post_meta($item['icon_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['icon_id'], '_wp_attachment_image_alt', TRUE) : 'Ícone tela' ?>">
+                        </div>
+                        <div class="points__item-desc">
+                            <?= wpautop($item['desc']) ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="products">
     <div class="container wrap">

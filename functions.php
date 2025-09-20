@@ -382,7 +382,6 @@ function cmb2_about()
 }
 add_action('cmb2_admin_init', 'cmb2_about');
 
-
 function cmb2_telas()
 {
     $cmb_telas = new_cmb2_box(array(
@@ -488,3 +487,100 @@ function cmb2_telas()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_telas');
+
+function cmb2_points()
+{
+    $cmb_points = new_cmb2_box(array(
+        'id'            => 'cmb2_points',
+        'title'         => __('Seção - Pontos', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_points->add_field(array(
+        'id'   => 'points_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_points->add_field(array(
+        'id'   => 'points_title',
+        'name' => 'Título ',
+        'type' => 'text',
+        'sanitization_cb' => 'prefix_sanitize_text_callback'
+    ));
+
+    $cmb_points->add_field(array(
+        'id'   => 'points_video',
+        'name' => 'Vídeo',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar vídeo'
+        ),
+        'query_args' => array(
+            'type' => array('video/webm'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $cmb_points->add_field(array(
+        'id'   => 'points_video_poster',
+        'name' => 'Poster',
+        'desc' => 'Imagem de carregamento do vídeo',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar vídeo'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $points = $cmb_points->add_field(array(
+        'id'          => 'points',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Ponto {#}', 'cmb2'),
+            'add_button'        => __('Adicionar ponto', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+
+    $cmb_points->add_group_field($points, array(
+        'id'      => 'desc',
+        'name'    => 'Descrição',
+        'type'    => 'text',
+    ));
+
+    $cmb_points->add_group_field($points, array(
+        'id'      => 'icon',
+        'name'    => 'Ícone',
+        'desc'    => 'Resolução recomendada de 42x42',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_points');
