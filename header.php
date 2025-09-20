@@ -21,7 +21,7 @@
     <header class="main-header main-header--float">
         <div class="container wrap">
             <a href="<?= get_home_url() ?>" class="main-header__logo">
-                <img src="<?= get_template_directory_uri() ?>/dist/images/logo.svg" alt="Logo">
+                <img src="<?php echo !empty(get_option('opt_page_theme_options')['logo']) ? get_option('opt_page_theme_options')['logo'] : get_template_directory_uri() . '/dist/images/logo.svg' ?>" alt="Logo Vimax">
             </a>
             <?php
             $menu = get_menu_items('menu_header');
@@ -33,11 +33,15 @@
                             <li class="main-header__menu-item"><a title="Link para <?= $item->title ?>" href="<?= $item->url ?>"><?= $item->title ?></a></li>
                         <?php endforeach; ?>
                     </ul>
-                    <a href="#" class="main-header__button main-header__button--mobile btn btn--default">Contato <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                    <?php if (!empty(get_option('opt_page_theme_options')['link_btn_header'])): ?>
+                        <a href="<?= get_option('opt_page_theme_options')['link_btn_header'] ?>" class="main-header__button main-header__button--mobile btn btn--default"><?php echo !empty(get_option('opt_page_theme_options')['text_btn_header']) ? get_option('opt_page_theme_options')['text_btn_header'] : "Contato" ?> <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                    <?php endif; ?>
                 </nav>
             <?php endif; ?>
             <div class="main-header__actions">
-                <a href="#" class="main-header__button btn btn--default">Contato <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                <?php if (!empty(get_option('opt_page_theme_options')['link_btn_header'])): ?>
+                    <a href="<?= get_option('opt_page_theme_options')['link_btn_header'] ?>" class="main-header__button btn btn--default"><?php echo !empty(get_option('opt_page_theme_options')['text_btn_header']) ? get_option('opt_page_theme_options')['text_btn_header'] : "Contato" ?> <img src="<?= get_template_directory_uri() ?>/dist/images/icon.svg" alt=""></a>
+                <?php endif; ?>
             </div>
             <div class="main-header__hamburguer">
                 <span></span>
