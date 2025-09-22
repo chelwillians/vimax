@@ -1,6 +1,6 @@
 <?php
 
-add_theme_support( 'post-thumbnails' );
+add_theme_support('post-thumbnails');
 
 // Desabilitar suporte a comentários e trackbacks em todos os post types
 function disable_comments_support()
@@ -659,3 +659,75 @@ function cmb2_products()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_products');
+
+function cmb2_commitments()
+{
+    $cmb_commitments = new_cmb2_box(array(
+        'id'            => 'cmb2_commitments',
+        'title'         => __('Seção - Compromissos', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_commitments->add_field(array(
+        'id'   => 'commitments_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_commitments->add_field(array(
+        'id'   => 'commitments_bg',
+        'name' => 'Imagem de fundo',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+
+    $cmb_commitments->add_field(array(
+        'id'   => 'commitments_title',
+        'name' => 'Título',
+        'type' => 'text',
+    ));
+
+    $commitments = $cmb_commitments->add_field(array(
+        'id'          => 'commitments',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Compromisso {#}', 'cmb2'),
+            'add_button'        => __('Adicionar compromisso', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+
+    $cmb_commitments->add_group_field($commitments, array(
+        'id'      => 'title',
+        'name'    => 'Título',
+        'type'    => 'text',
+    ));
+
+    $cmb_commitments->add_group_field($commitments, array(
+        'id'      => 'desc',
+        'name'    => 'Descrição',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_commitments');

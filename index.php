@@ -192,32 +192,28 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="commitments" style="background-image: url(<?= get_template_directory_uri() ?>/dist/images/fundo-compromissos.jpg);">
-    <div class="container wrap">
-        <h2 class="commitments__title title">Compromissos</h2>
+<?php if (!empty(get_field_cmb2('commitments_show'))): ?>
+    <section class="commitments" style="background-image: url(<?= !empty(get_field_cmb2('commitments_bg')) ? get_field_cmb2('commitments_bg') : get_template_directory_uri() . '/dist/images/fundo-compromissos.jpg' ?>);">
+        <div class="container wrap">
+            <?php if (!empty(get_field_cmb2('commitments_title'))): ?>
+                <h2 class="commitments__title title"><?= get_field_cmb2('commitments_title') ?></h2>
+            <?php endif; ?>
 
-        <div class="commitments__list">
-            <div class="commitments__item">
-                <h2 class="commitments__item-title">Qualidade.</h2>
-                <div class="commitments__item-desc">
-                    <p>A Vimax trabalha sempre com o objetivo de desenhar e fabricar produtos de altíssima qualidade, projetando telas para aplicações especificas.</p>
+            <?php if (!empty(get_field_cmb2('commitments'))): ?>
+                <div class="commitments__list">
+                    <?php foreach (get_field_cmb2('commitments') as $item) : ?>
+                        <div class="commitments__item">
+                            <h2 class="commitments__item-title"><?= $item['title'] ?></h2>
+                            <div class="commitments__item-desc">
+                                <?= wpautop($item['desc']) ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            </div>
-            <div class="commitments__item">
-                <h2 class="commitments__item-title">Matéria prima.</h2>
-                <div class="commitments__item-desc">
-                    <p>Os materiais utilizados na fabricação das Telas, seguem rigorosamente as especificações das normas SAE, DIN, ASTM e ABNT, garantindo as propriedades físicas e químicas para um desempenho ideal no processo de peneiramento </p>
-                </div>
-            </div>
-            <div class="commitments__item">
-                <h2 class="commitments__item-title">assistência técnica.</h2>
-                <div class="commitments__item-desc">
-                    <p>Equipe técnica à disposição dos nossos clientes, desde o levantamento de dados dos processos, detalhamento das melhorias propostas, instalação e acompanhamento de desempenho. </p>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="logos">
     <div class="container wrap">
