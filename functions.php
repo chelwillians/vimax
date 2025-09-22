@@ -205,6 +205,54 @@ function opt_page_register_theme_options_metabox()
         'id' => 'text_btn_header',
         'type' => 'text',
     ));
+
+    $cmb_options->add_field(array(
+        'id'   => 'cmb2_title_footer',
+        'name' => 'Footer',
+        'type' => 'title',
+    ));
+
+     $cmb_options->add_field(array(
+        'id'      => 'logo_footer',
+        'name'    => 'Logo footer',
+        // 'desc'    => 'Resolução recomendada de 108x33',
+        'type'    => 'file',
+        // Optional:
+        'options' => array(
+            'url' => false, // Hide the text input for the url
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar arquivo'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'large',
+    ));
+
+    $cmb_options->add_field(array(
+        'id'   => 'endereco',
+        'name' => 'Endereço',
+        'type' => 'text',
+    ));
+
+    $cmb_options->add_field(array(
+        'id'   => 'telefone',
+        'name' => 'Telefone',
+        'type' => 'text',
+    ));
+
+    $cmb_options->add_field(array(
+        'id'   => 'whatsapp',
+        'name' => 'Whatsapp',
+        'type' => 'text',
+    ));
+
+    $cmb_options->add_field(array(
+        'id'   => 'email',
+        'name' => 'E-mail',
+        'type' => 'text',
+    ));
 }
 add_action('cmb2_admin_init', 'opt_page_register_theme_options_metabox');
 
