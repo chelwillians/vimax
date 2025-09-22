@@ -855,3 +855,47 @@ function cmb2_logos_2()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_logos_2');
+
+function cmb2_contact()
+{
+    $cmb_contact = new_cmb2_box(array(
+        'id'            => 'cmb2_contact',
+        'title'         => __('Seção - Contato', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_contact->add_field(array(
+        'id'   => 'contact_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_contact->add_field(array(
+        'id'   => 'contact_title',
+        'name' => 'Título ',
+        'type' => 'text',
+    ));
+
+    $cmb_contact->add_field(array(
+        'id'   => 'contact_desc',
+        'name' => 'Descrição',
+        'type'    => 'text',
+    ));
+
+     $cmb_contact->add_field(array(
+        'id'   => 'contact_shortcode',
+        'name' => 'Shortcode',
+        'type'    => 'text',
+    ));
+
+     $cmb_contact->add_field(array(
+        'id'   => 'contact_shortcode',
+        'name' => 'Shortcode',
+        'type'    => 'text',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_contact');

@@ -259,31 +259,26 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="contact">
-    <div class="container wrap">
-        <div class="contact__left">
-            <h2 class="contact__title title">Entre em contato conosco.</h2>
-            <div class="contact__desc">
-                <p>Estamos à disposição para atender as suas necessidades
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/arrow.svg" class="contact__desc-arrow" alt="">
-                </p>
+<?php if (!empty(get_field_cmb2('contact_show'))): ?>
+    <section class="contact">
+        <div class="container wrap">
+            <div class="contact__left">
+                <?php if (!empty(get_field_cmb2('contact_title'))): ?>
+                    <h2 class="contact__title title"><?= get_field_cmb2('contact_title') ?></h2>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('contact_desc'))): ?>
+                    <div class="contact__desc">
+                        <p><?= get_field_cmb2('contact_desc') ?>
+                            <img src="<?= get_template_directory_uri() ?>/dist/images/arrow.svg" class="contact__desc-arrow" alt="">
+                        </p>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="contact__form">
+                <?= do_shortcode(get_field_cmb2('contact_shortcode')) ?>
             </div>
         </div>
-        <div class="contact__form">
-            <form action="">
-                <input type="text" name="nome" placeholder="Nome" id="">
-                <input type="text" name="empresa" placeholder="Empresa" id="">
-                <input type="email" name="email" placeholder="E-mail" id="">
-                <input type="tel" name="tel" placeholder="Telefone" id="">
-                <textarea name="mensagem" placeholder="mensagem" id=""></textarea>
-                <input type="submit" value="Solicitar contato">
-                <label class="accept">
-                    <input type="checkbox" name="dados" id="">
-                    <span>Aceito receber comunicações da Vimax</span>
-                </label>
-            </form>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <?= get_footer() ?>
