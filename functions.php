@@ -731,3 +731,127 @@ function cmb2_commitments()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_commitments');
+
+function cmb2_logos_1()
+{
+    $cmb_logos_1 = new_cmb2_box(array(
+        'id'            => 'cmb2_logos_1',
+        'title'         => __('Seção - Logos 1', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_logos_1->add_field(array(
+        'id'   => 'logos_1_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_logos_1->add_field(array(
+        'id'   => 'logos_1_pre_title',
+        'name' => 'Pré título ',
+        'type' => 'text',
+    ));
+
+    $cmb_logos_1->add_field(array(
+        'id'   => 'logos_1_title',
+        'name' => 'Título ',
+        'type' => 'text',
+    ));
+
+    $logos = $cmb_logos_1->add_field(array(
+        'id'          => 'logos_1',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Logo {#}', 'cmb2'),
+            'add_button'        => __('Adicionar logo', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+    $cmb_logos_1->add_group_field($logos, array(
+        'id'      => 'logo',
+        'name'    => 'Logo',
+        'desc'    => 'Resolução recomendada de 356x100',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_logos_1');
+
+function cmb2_logos_2()
+{
+    $cmb_logos_2 = new_cmb2_box(array(
+        'id'            => 'cmb2_logos_2',
+        'title'         => __('Seção - Logos 2', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_logos_2->add_field(array(
+        'id'   => 'logos_2_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_logos_2->add_field(array(
+        'id'   => 'logos_2_pre_title',
+        'name' => 'Pré título ',
+        'type' => 'text',
+    ));
+
+    $cmb_logos_2->add_field(array(
+        'id'   => 'logos_2_title',
+        'name' => 'Título ',
+        'type' => 'text',
+    ));
+
+    $logos = $cmb_logos_2->add_field(array(
+        'id'          => 'logos_2',
+        'type'        => 'group',
+        // 'repeatable'  => false, // use false if you want non-repeatable group
+        'options'     => array(
+            'group_title'       => __('Logo {#}', 'cmb2'),
+            'add_button'        => __('Adicionar logo', 'cmb2'),
+            'remove_button'     => __('Remover', 'cmb2'),
+            'sortable'          => true,
+            'closed'         => true,
+            'remove_confirm' => esc_html__('Are you sure you want to remove?', 'cmb2'),
+        ),
+    ));
+    $cmb_logos_2->add_group_field($logos, array(
+        'id'      => 'logo',
+        'name'    => 'Logo',
+        'desc'    => 'Resolução recomendada de 356x200',
+        'type'    => 'file',
+        'options' => array(
+            'url' => false,
+        ),
+        'text'    => array(
+            'add_upload_file_text' => 'Adicionar imagem'
+        ),
+        'query_args' => array(
+            'type' => array('image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'),
+        ),
+        'preview_size' => 'medium',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_logos_2');

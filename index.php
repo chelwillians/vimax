@@ -215,33 +215,49 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="logos">
-    <div class="container wrap">
-        <div class="logos__header">
-            <p class="logos__pretitle">Comprometimento com a inovação.</p>
-            <h2 class="logos__title title">Eventos e Feiras.</h2>
+<?php if (!empty(get_field_cmb2('logos_1_show'))): ?>
+    <section class="logos">
+        <div class="container wrap">
+            <div class="logos__header">
+                <?php if (!empty(get_field_cmb2('logos_1_pre_title'))): ?>
+                    <p class="logos__pretitle"><?= get_field_cmb2('logos_1_pre_title') ?></p>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('logos_1_title'))): ?>
+                    <h2 class="logos__title title"><?= get_field_cmb2('logos_1_title') ?></h2>
+                <?php endif; ?>
+            </div>
+            <?php if (!empty(get_field_cmb2('logos_1'))): ?>
+                <div class="logos__list">
+                    <?php foreach (get_field_cmb2('logos_1') as $index => $item): ?>
+                        <div class="logos__item"><img src="<?= $item['logo'] ?>" alt="<?= !empty(get_post_meta($item['logo_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['logo_id'], '_wp_attachment_image_alt', TRUE) : 'Logo' ?>"></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
-        <div class="logos__list">
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
-<section class="logos">
-    <div class="container wrap">
-        <div class="logos__header logos__header--reverse">
-            <p class="logos__pretitle">Comprometimento com o mercado.</p>
-            <h2 class="logos__title title">Associações.</h2>
+<?php if (!empty(get_field_cmb2('logos_2_show'))): ?>
+    <section class="logos">
+        <div class="container wrap">
+            <div class="logos__header logos__header--reverse">
+                <?php if (!empty(get_field_cmb2('logos_2_pre_title'))): ?>
+                    <p class="logos__pretitle"><?= get_field_cmb2('logos_2_pre_title') ?></p>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('logos_2_title'))): ?>
+                    <h2 class="logos__title title"><?= get_field_cmb2('logos_2_title') ?></h2>
+                <?php endif; ?>
+            </div>
+            <?php if (!empty(get_field_cmb2('logos_2'))): ?>
+                <div class="logos__list">
+                    <?php foreach (get_field_cmb2('logos_2') as $index => $item): ?>
+                        <div class="logos__item"><img src="<?= $item['logo'] ?>" alt="<?= !empty(get_post_meta($item['logo_id'], '_wp_attachment_image_alt', TRUE)) ? get_post_meta($item['logo_id'], '_wp_attachment_image_alt', TRUE) : 'Logo' ?>"></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
-        <div class="logos__list">
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-            <div class="logos__item"><img src="https://placehold.co/356x100" alt=""></div>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="contact">
     <div class="container wrap">
