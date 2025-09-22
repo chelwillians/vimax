@@ -1,5 +1,7 @@
 <?php
 
+add_theme_support( 'post-thumbnails' );
+
 // Desabilitar suporte a comentários e trackbacks em todos os post types
 function disable_comments_support()
 {
@@ -205,6 +207,31 @@ function opt_page_register_theme_options_metabox()
     ));
 }
 add_action('cmb2_admin_init', 'opt_page_register_theme_options_metabox');
+
+function register_cpt_produtos()
+{
+    register_post_type('produtos', array(
+        'publicly_queryable'  => true,
+        'labels' => array(
+            'name' => 'Produtos',
+            'singular_name' => 'Produto',
+            'add_new_item' => 'Adiconar novo',
+        ),
+        'show_in_rest' => true,
+        'supports' => array(
+            'title',
+            'thumbnail',
+        ),
+        'public' => true,
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-grid-view',
+        'rewrite' => array(
+            'with_front' => false,
+            'slug'       => 'produtos'
+        )
+    ));
+}
+add_action('init', 'register_cpt_produtos');
 
 // Fields
 function cmb2_h1_title()
@@ -584,3 +611,51 @@ function cmb2_points()
     ));
 }
 add_action('cmb2_admin_init', 'cmb2_points');
+
+function cmb2_products()
+{
+    $cmb_products = new_cmb2_box(array(
+        'id'            => 'cmb2_products',
+        'title'         => __('Seção - Produtos', 'cmb2'),
+        'object_types'  => array('page'),
+        'show_on' => array('key' => 'page-template', 'value' => 'index.php'),
+        'context'       => 'normal',
+        'priority'      => 'high',
+        'show_names'    => true, // Show field names on the left
+    ));
+
+    $cmb_products->add_field(array(
+        'id'   => 'products_show',
+        'name' => 'Mostrar seção? ',
+        'type' => 'checkbox',
+    ));
+
+    $cmb_products->add_field(array(
+        'id'   => 'products_title',
+        'name' => 'Título',
+        'type' => 'text',
+    ));
+
+    $cmb_products->add_field(array(
+        'id'   => 'products_desc',
+        'name' => 'Descrição ',
+        'type'    => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+        ),
+    ));
+
+    $cmb_products->add_field(array(
+        'id'   => 'products_text_button',
+        'name' => 'Texto botão',
+        'type' => 'text',
+    ));
+
+    $cmb_products->add_field(array(
+        'id'   => 'products_link_button',
+        'name' => 'Link botão',
+        'type' => 'text',
+    ));
+}
+add_action('cmb2_admin_init', 'cmb2_products');

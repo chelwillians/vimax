@@ -141,44 +141,56 @@ get_header() ?>
     </section>
 <?php endif; ?>
 
-<section class="products">
-    <div class="container wrap">
-        <div class="products__header">
-            <h2 class="products__title title">Completa linha de telas para a sua operação.</h2>
-            <div class="products__desc">
-                <p>Conheça nossas famílias de produtos.</p>
+<?php if (!empty(get_field_cmb2('products_show'))): ?>
+    <section class="products">
+        <div class="container wrap">
+            <div class="products__header">
+                <?php if (!empty(get_field_cmb2('products_title'))): ?>
+                    <h2 class="products__title title"><?= get_field_cmb2('products_title') ?></h2>
+                <?php endif; ?>
+                <?php if (!empty(get_field_cmb2('products_desc'))): ?>
+                    <div class="products__desc">
+                        <?= wpautop(get_field_cmb2('products_desc')) ?>
+                    </div>
+                <?php endif; ?>
+                <img src="<?= get_template_directory_uri() ?>/dist/images/float-icon-products.png" class="products__float-icon" />
             </div>
-            <img src="<?= get_template_directory_uri() ?>/dist/images/float-icon-products.png" class="products__float-icon" />
+            <?php
+            $args_blog = array(
+                'post_type'      => 'produtos',
+                'posts_per_page' => -1,
+                'post_status'    => 'publish',
+            );
+            query_posts($args_blog);
+
+            if (have_posts()) :
+            ?>
+                <div class="products__list swiper">
+                    <div class="swiper-wrapper">
+                        <?php $i = 0;
+                        $duration = 400;
+                        while (have_posts()) :
+                            the_post();
+                        ?>
+                            <div class="products__item swiper-slide">
+                                <img src="<?= has_post_thumbnail() ? get_the_post_thumbnail_url('', 'medium_large') : get_template_directory_uri() . "/dist/images/post-highlight.jpg" ?>" alt="<?= has_post_thumbnail() ? get_alt(get_post_thumbnail_id()) : "Imagem do post " . get_the_title() ?>" class="products__item-image">
+                                <h3 class="products__item-title"><?= get_the_title() ?></h3>
+                            </div>
+                        <?php $i++;
+                            $duration += 200;
+                        endwhile; ?>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php wp_reset_query(); ?>
+            <?php if (!empty(get_field_cmb2('products_link_button'))): ?>
+                <div class="products__button-area">
+                    <a href="<?= get_field_cmb2('products_link_button') ?>" class="products__button"><?= !empty(get_field_cmb2('products_text_button')) ? get_field_cmb2('products_text_button') : 'Entre em contato conosco' ?> <img src="<?= get_template_directory_uri() ?>/dist/images/icon-black.svg" alt=""></a>
+                </div>
+            <?php endif ?>
         </div>
-        <div class="products__list swiper">
-            <div class="swiper-wrapper">
-                <div class="products__item swiper-slide">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/telas-autolimpantes.jpg" alt="" class="products__item-image">
-                    <h3 class="products__item-title">Telas Autolimpantes</h3>
-                </div>
-                <div class="products__item swiper-slide">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/peneiramento-de-finos.jpg" alt="" class="products__item-image">
-                    <h3 class="products__item-title">Peneiramento de Finos</h3>
-                </div>
-                <div class="products__item swiper-slide">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/tela-mista.jpg" alt="" class="products__item-image">
-                    <h3 class="products__item-title">Tela Mista</h3>
-                </div>
-                <div class="products__item swiper-slide">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/trommel.jpg" alt="" class="products__item-image">
-                    <h3 class="products__item-title">Projetos Especiais</h3>
-                </div>
-                <div class="products__item swiper-slide">
-                    <img src="<?= get_template_directory_uri() ?>/dist/images/produto.jpg" alt="" class="products__item-image">
-                    <h3 class="products__item-title">Produto</h3>
-                </div>
-            </div>
-        </div>
-        <div class="products__button-area">
-            <a href="#" class="products__button">Entre em contato conosco <img src="<?= get_template_directory_uri() ?>/dist/images/icon-black.svg" alt=""></a>
-        </div>
-    </div>
-</section>
+    </section>
+<?php endif; ?>
 
 <section class="commitments" style="background-image: url(<?= get_template_directory_uri() ?>/dist/images/fundo-compromissos.jpg);">
     <div class="container wrap">
