@@ -109,5 +109,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             delay: 3500,
             disableOnInteraction: false,
         },
+        navigation: {
+            nextEl: '.products__next',
+            prevEl: '.products__prev',
+        },
+        pagination: {
+            el: '.products__pagination',
+            clickable: true,
+        },
     });
 });

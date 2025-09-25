@@ -180,6 +180,10 @@ get_header() ?>
                             $duration += 200;
                         endwhile; ?>
                     </div>
+                    <div class="products__navigation">
+                        <div class="products__prev"></div>
+                        <div class="products__next"></div>
+                    </div>
                 </div>
             <?php endif ?>
             <?php wp_reset_query(); ?>
@@ -260,7 +264,7 @@ get_header() ?>
 <?php endif; ?>
 
 <?php if (!empty(get_field_cmb2('contact_show'))): ?>
-    <section class="contact">
+    <section class="contact" id="contato">
         <div class="container wrap">
             <div class="contact__left">
                 <?php if (!empty(get_field_cmb2('contact_title'))): ?>
