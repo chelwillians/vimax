@@ -23,11 +23,16 @@
 
     &__item {
         position: relative;
-        height: 734px;
+        height: 100vh;
         display: flex;
         align-items: center;
-        padding-top: 120px;
         z-index: 55;
+        padding-top: 70px;
+
+        @media screen and (min-width: 1024px) {
+            height: 734px;
+            padding-top: 120px;
+        }
 
         &::before {
             content: '';
